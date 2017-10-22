@@ -34,6 +34,7 @@ We store user uploaded images into our *AWS S3* buckets, and then calls the *Mic
 for each image that user uploaded to get the emotion scores for each person in the image. Then we pass
 those scores into a *machine learning* model we trained to get a level of focusing for each audience.
 We show the focusing level to the user and also report which point has the highest/lowest level of focus.
+Our web server is hosted on *AWS EC2* instance.
 
 ```
 |front end|     ->  |AWS S3|    ->  |MS EmotionAPI|     ->  |Logistic Regression model|     ->  |front end|
