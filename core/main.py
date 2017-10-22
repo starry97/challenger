@@ -12,17 +12,30 @@ params = urllib.urlencode({
 # url is from AWS S3.
 body = "{ 'url': 'https://s3-us-west-2.amazonaws.com/dubhacks17/5e19d9d9b51056b8180e34d04f94a74e_Top-Secrets-of-How-to-be-Happy-814-363-c.jpg' }"
 
-s3 = boto3.client(
+client = boto3.client(
     's3',
     aws_access_key_id='AKIAJFOVQUF3EYLXWPHA',
     aws_secret_access_key='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'
 )
 
-response = s3.list_buckets()
+resource = boto3.resource(
+    's3',
+    aws_access_key_id='AKIAJFOVQUF3EYLXWPHA',
+    aws_secret_access_key='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'
+)
+
+response = client.list_buckets()
 
 buckets = [bucket['Name'] for bucket in response['Buckets']]
 
 print("Bucket List: %s" % buckets)
+
+bucket = resource.Bucket('dubhacks17')
+
+objs = bucket.meta.client.list_objects(Bucket='dubhacks17')
+
+for key in bucket.objects.all():
+    print('https://s3-us-west-2.amazonaws.com/dubhacks17/' + key.key)
 
 #
 # try:
