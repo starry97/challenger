@@ -76,4 +76,4 @@ if __name__ == "__main__":
     print
     print "Training Accuracy:", accuracy(train_data, predictions)
 
-    app.run(host='0.0.0.0', port=8000, threaded=True)
+    app.run(host='ec2-52-206-17-234.compute-1.amazonaws.com', port=8000, threaded=True)
