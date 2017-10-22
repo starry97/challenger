@@ -53,36 +53,40 @@ def extract_features(raw):
     data = []
     for r in raw:
         point = {}
-        point["label"] = (r['income'] == '>50K')
+        point["label"] = r['res']
 
         features = []
-        features.append(1.) 
-        features.append(float(r['age'])/100)
-        features.append(float(r['education_num'])/20)
-        features.append(r['marital'] == 'Married-civ-spouse')
-        #TODO: Add more feature extraction rules here!
-        features.append(r['education'] in ['Doctorate'])
-        
-        features.append(float(r['hr_per_week'])/50)
-        #features.append(r['race'] == 'White')
-        #features.append(r['occupation'] == 'Exec-managerial')
-        #features.append(int(r['capital_loss']) > 10)
-        features.append(r['relationship'] == 'Husband' and r['race'] == 'White' 
-                        and r['type_employer'] == 'Self-emp-inc')
-        filter_marital = ['Divorced', 'Widowed' 'Separated', 'Never-married']
-        features.append(r['marital'] in filter_marital)
-        filter_countries = ['Dominican-Republic', 'El-Salvador', 'Greece', 
-                            'Guatemala', 'Haiti', 'Honduras', 'Hungary', 'Mexico', 'Nicaragua',
-                            'Vietnam']
-        features.append(r['country'] in filter_countries)
-        
-        features.append(float(r['fnlwgt'])/600000)
-        
-        features.append(int(r['capital_gain'])-int(r['capital_loss']) > 0)
+        features.append(1.)
+        features.append(float(r['anger']))
+        features.append(float(r['contempt']))
+        features.append(float(r['disgust']))
+        features.append(float(r['fear']))
+        features.append(float(r['happiness']))
+        features.append(float(r['neutral']))
+        features.append(float(r['sadness']))
+        features.append(float(r['surprise']))
         
         point['features'] = features
         data.append(point)
     return data
+
+def extract_features_single_point(r):
+    point = {}
+    # point["label"] = r['res']
+
+    features = []
+    features.append(1.) 
+    features.append(float(r['anger']))
+    features.append(float(r['contempt']))
+    features.append(float(r['disgust']))
+    features.append(float(r['fear']))
+    features.append(float(r['happiness']))
+    features.append(float(r['neutral']))
+    features.append(float(r['sadness']))
+    features.append(float(r['surprise']))
+    
+    point['features'] = features
+    return point
 
 # TODO: Tune your parameters for final submission
 def submission(data):

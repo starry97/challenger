@@ -27,7 +27,7 @@ def emotion_api(url):
         print(json.dumps(parsed, indent=4, sort_keys=True))
 
         conn.close()
-        return response
+        return data
     except Exception as e:
         print(e)
 
@@ -36,14 +36,17 @@ def compute_for_username(bucket, username):
     """
     Compute emotion scores for all the images in the folder for this user.
     :param username: the username for this user.
+    :return a list of JSON responses for all the images in this user's folder.
     """
+    response = []
     for key in bucket.objects.filter(Prefix=username):
         url = 'https://s3-us-west-2.amazonaws.com/dubhacks17/' + key.key
         print(url)
         if url.endswith('/'):
             print('It is a folder, skipping it...')
         else:
-            response = emotion_api(url)
+            response.append(emotion_api(url))
+    return response
 
 
 if __name__ == '__main__':
@@ -73,4 +76,6 @@ if __name__ == '__main__':
     bucket = resource.Bucket(S3_BUCKET_NAME)
     username = 'sunbw'
 
-    compute_for_username(bucket, username)
+    result_list = compute_for_username(bucket, username)
+
+    print(result_list)
