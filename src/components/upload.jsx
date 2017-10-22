@@ -14,6 +14,25 @@ const s3 = new AWS.S3();
 const username = "temp-user";
 
 export class Uploader extends Component {
+
+  componentDidMount() {
+    const formData = new FormData();
+    formData.append("username", "temp-user");
+    formData.append("input_address", "http://s3.amazonaws.com/dubhacks17/temp-user");
+    var param = {
+      method: 'POST',
+      mode: 'cors',
+      body: formData
+    };
+    fetch("http://localhost:8000", param)
+    .then((response) => {
+      console.log(response);
+      // perform setState here
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
   addPhoto(acceptedFiles) {
     acceptedFiles.forEach(file => {
       var fileName = file.name;
