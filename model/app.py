@@ -16,14 +16,22 @@ def result():
     """
     username = request.form['username']
     input_address = request.form['input_address']
+    # get predictions for all pictures in the input_address
     predictions, max_num_faces = getPredictions(username, input_address)
+    
+    for prediction in predictions:
+        num_not_focus = max_num_faces - len(prediction)
+        for face in prediction:
+            if face["result"] is 0:
+                num_not_focus += 1
+        print "There are " + num_not_focus + " out of " + max_num_faces + " students are not focusing on the lecture."
     
     
     return 'Received !' # response to your request.
 
 def getPredictions(username, input_address):
     # read all filenames in the input folder
-    filename_list = [f for f in listdir(input_address) if isfile(join(input_address, f))]
+    filename_list = [join(input_address, f) for f in listdir(input_address) if isfile(join(input_address, f))]
     max_num_faces = 0
     # predictions for all pictures
     predictions_all = []
@@ -31,7 +39,7 @@ def getPredictions(username, input_address):
     # filename should be in format: <unique filename>_<number of faces in picture>
     for filename in filename_list:
         print(filename)
-        data = emotionAPI(filename)
+        data = emotion_api(filename)
         item_dict = json.loads(data)
         max_num_faces = max(max_num_faces, len(item_dict))
         
@@ -52,3 +60,4 @@ if __name__ == "__main__":
      # prepare the model
      train_data = extract_features(load_adult_train_data())
      model = submission(train_data)
+     print model
