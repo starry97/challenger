@@ -2,7 +2,7 @@ from flask import Flask, request
 from os import listdir
 from os.path import isfile, join
 import json
-from sgd import logistic, dot, predict, accuracy, submission, extract_features
+from sgd import logistic, dot, predict, accuracy, submission, extract_features, extract_features_single_point
 from data import load_adult_train_data, load_adult_valid_data
 from main import emotion_api
 
@@ -56,8 +56,8 @@ def getPredictions(username, input_address):
     return predictions_all, max_num_faces
 
 if __name__ == "__main__":
-     app.run(host='0.0.0.0', port=8000)
-     # prepare the model
-     train_data = extract_features(load_adult_train_data())
-     model = submission(train_data)
-     print model
+    # prepare the model
+    train_data = extract_features(load_adult_train_data())
+    model = submission(train_data)
+    print model
+    app.run(host='0.0.0.0', port=8000)
