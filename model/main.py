@@ -5,6 +5,27 @@ SECRET_KEY = 'tTrGiPaQ84KkeZInpQ6116W18fHNY5pmUZqwquv0'
 AZURE_KEY = '13ecc9b40ce34bc89d937d131391d44e'
 S3_BUCKET_NAME = 'dubhacks17'
 
+headers = {
+    # Request headers. subscription key below is for MS Azure.
+    'Content-Type': 'application/json',
+    'Ocp-Apim-Subscription-Key': AZURE_KEY,
+}
+
+params = urllib.urlencode({
+})
+
+client = boto3.client(
+    's3',
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY
+)
+
+resource = boto3.resource(
+    's3',
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY
+)
+
 
 def emotion_api(url):
     """
@@ -38,6 +59,7 @@ def compute_for_username(username):
     :param username: the username for this user.
     :return a list of JSON responses for all the images in this user's folder.
     """
+    bucket = resource.Bucket(S3_BUCKET_NAME)
     response = []
     for key in bucket.objects.filter(Prefix=username):
         url = 'https://s3-us-west-2.amazonaws.com/dubhacks17/' + key.key
@@ -73,7 +95,6 @@ if __name__ == '__main__':
 
     print("Bucket List: %s" % [bucket['Name'] for bucket in client.list_buckets()['Buckets']])
 
-    bucket = resource.Bucket(S3_BUCKET_NAME)
     username = 'sunbw'
 
     result_list = compute_for_username(username)
