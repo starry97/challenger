@@ -1,6 +1,6 @@
-# Challenger :+1:
+# [macrohard-focus](http://macrohard-focus.org)
 
-## This is the repo for team *Challenger* @ Dubhacks 2017!
+## This is the project repo for team *Challenger* @ Dubhacks 2017!
 
 ## Team member:
 * Xukai (Antony) Liu
@@ -9,7 +9,7 @@
 * Lingyue (Cynthia) Zhang
 
 ## Project description:
-Our project focuses on the 3rd challenge of Dubhacks2017:
+Our project focuses on the *3rd challenge* of Dubhacks2017:
 > Craft sustainable experiences 
 > that break down barriers for 
 > your local communities.
