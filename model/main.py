@@ -32,7 +32,7 @@ def emotion_api(url):
         print(e)
 
 
-def compute_for_username(bucket, username):
+def compute_for_username(username):
     """
     Compute emotion scores for all the images in the folder for this user.
     :param username: the username for this user.
@@ -76,6 +76,6 @@ if __name__ == '__main__':
     bucket = resource.Bucket(S3_BUCKET_NAME)
     username = 'sunbw'
 
-    result_list = compute_for_username(bucket, username)
+    result_list = compute_for_username(username)
 
     print(result_list)

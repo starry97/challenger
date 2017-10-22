@@ -5,7 +5,7 @@ from os.path import isfile, join
 import json
 from sgd import logistic, dot, predict, accuracy, submission, extract_features, extract_features_single_point
 from data import load_adult_train_data, load_adult_valid_data
-from main import emotion_api
+from main import emotion_api, compute_for_username
 
 app = Flask(__name__)
 CORS(app)
@@ -33,7 +33,7 @@ def result():
 
 def getPredictions(username, input_address):
     # read all filenames in the input folder
-    filename_list = [join(input_address, f) for f in listdir(input_address) if isfile(join(input_address, f))]
+    filename_list = compute_for_username(username)
     max_num_faces = 0
     # predictions for all pictures
     predictions_all = []
@@ -62,4 +62,9 @@ if __name__ == "__main__":
     train_data = extract_features(load_adult_train_data())
     model = submission(train_data)
     print model
+    predictions = [predict(model, p) for p in train_data]
+    print
+    print
+    print "Training Accuracy:", accuracy(train_data, predictions)
+
     app.run(host='0.0.0.0', port=8000)
