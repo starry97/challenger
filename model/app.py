@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from os import listdir
 from os.path import isfile, join
 import json
@@ -7,6 +8,7 @@ from data import load_adult_train_data, load_adult_valid_data
 from main import emotion_api
 
 app = Flask(__name__)
+CORS(app)
 model = None
 
 @app.route('/', methods=['POST'])
