@@ -1,4 +1,5 @@
-  [{
+[
+  {
     "faceRectangle": {
       "top": 52,
       "left": 184,
@@ -13,7 +14,7 @@
       "happiness": 0.653476059,
       "neutral": 0.327362269,
       "sadness": 0.007812302,
-      "surprise": 0.00345255039
+      "surprise": 0.00345255039,
       "res": 1
     }
  },
@@ -32,7 +33,7 @@
       "happiness": 7.261143E-06,
       "neutral": 0.9970976,
       "sadness": 0.00243670912,
-      "surprise": 5.922146E-06
+      "surprise": 5.922146E-06,
       "res": 1
     }
   },
@@ -51,7 +52,7 @@
       "happiness": 0.02297878,
       "neutral": 0.95813936,
       "sadness": 0.00401603524,
-      "surprise": 0.000211852
+      "surprise": 0.000211852,
       "res": 1
     }
   },
@@ -70,7 +71,7 @@
       "happiness": 0.16120486,
       "neutral": 0.8287695,
       "sadness": 3.90953E-06,
-      "surprise": 9.809822E-07
+      "surprise": 9.809822E-07,
       "res": 1
     }
   },
@@ -89,7 +90,7 @@
       "happiness": 6.863849E-06,
       "neutral": 0.997122169,
       "sadness": 0.000686622632,
-      "surprise": 0.0004009475
+      "surprise": 0.0004009475,
       "res": 1
     }
   },
@@ -108,7 +109,7 @@
       "happiness": 1.04112323E-05,
       "neutral": 0.999651432,
       "sadness": 0.000207844714,
-      "surprise": 8.981721E-06
+      "surprise": 8.981721E-06,
       "res": 1
     }
   },
@@ -127,8 +128,8 @@
       "happiness": 0.004509419,
       "neutral": 0.9786473,
       "sadness": 0.00364653161,
-      "surprise": 0.008844976
+      "surprise": 0.008844976,
       "res": 1
     }
   }
-  ]
+]
