@@ -1,6 +1,5 @@
 from math import exp
 import random
-from msilib import Feature
 
 # TODO: Calculate logistic
 def logistic(x):
