@@ -1,8 +1,13 @@
 from flask import Flask, request
 app = Flask(__name__)
+
 @app.route('/', methods=['POST'])
 def result():
-    print(request.form['foo']) # should display 'bar'
+    """
+    Please call url "http://localhost/8000"
+    """
+    username = request.form['username']
+    input_address = request.form['input_address']
     return 'Received !' # response to your request.
 
 if __name__ == "__main__":
