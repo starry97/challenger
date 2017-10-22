@@ -44,7 +44,7 @@ export class Uploader extends Component {
           mode: 'cors',
           body: formData
         };
-        fetch("http://localhost:8000", param)
+        fetch("ec2-52-206-17-234.compute-1.amazonaws.com:8000", param)
         .then((response) => {
           if (response.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' +
