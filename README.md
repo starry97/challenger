@@ -1,4 +1,4 @@
-# [macrohard-focus](http://macrohard-focus.org)
+# [macrohard-focus](http://ec2-52-206-17-234.compute-1.amazonaws.com:3000/)
 
 ## This is the project repo for team *Challenger* @ Dubhacks 2017!
 
