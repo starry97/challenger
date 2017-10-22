@@ -1,6 +1,6 @@
 # challenger
 
-# This is the repo for 2017 Dubhacks!
+# This is the repo for team `Challenger` @ 2017 Dubhacks!
 
 # Team member:
 * Xukai (Antony) Liu
