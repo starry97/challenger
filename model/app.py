@@ -37,6 +37,7 @@ def getPredictions(username, input_address):
     max_num_faces = 0
     # predictions for all pictures
     predictions_all = []
+    print filename_list
     
     # filename should be in format: <unique filename>_<number of faces in picture>
     for filename in filename_list:
