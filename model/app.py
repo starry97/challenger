@@ -60,4 +60,9 @@ if __name__ == "__main__":
     train_data = extract_features(load_adult_train_data())
     model = submission(train_data)
     print model
+    predictions = [predict(model, p) for p in train_data]
+    print
+    print
+    print "Training Accuracy:", accuracy(train_data, predictions)
+
     app.run(host='0.0.0.0', port=8000)
