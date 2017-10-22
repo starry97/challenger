@@ -5,6 +5,27 @@ SECRET_KEY = 'tTrGiPaQ84KkeZInpQ6116W18fHNY5pmUZqwquv0'
 AZURE_KEY = '13ecc9b40ce34bc89d937d131391d44e'
 S3_BUCKET_NAME = 'dubhacks17'
 
+headers = {
+    # Request headers. subscription key below is for MS Azure.
+    'Content-Type': 'application/json',
+    'Ocp-Apim-Subscription-Key': AZURE_KEY,
+}
+
+params = urllib.urlencode({
+})
+
+client = boto3.client(
+    's3',
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY
+)
+
+resource = boto3.resource(
+    's3',
+    aws_access_key_id=ACCESS_KEY,
+    aws_secret_access_key=SECRET_KEY
+)
+
 
 def emotion_api(url):
     """
