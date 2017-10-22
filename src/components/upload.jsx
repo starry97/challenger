@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
+import './upload.css';
+
 const AWS = require('aws-sdk');
 
 AWS.config.update({
@@ -31,12 +33,20 @@ export class Uploader extends Component {
 
   render() {
     return (
-      <div>
+      <div className='upload' id='upload'>
         <Dropzone
           multiple={true}
           accept="image/*"
           onDrop={this.addPhoto.bind(this)}
-        />
+          className={'upload-area'}
+          activeClassName='active'
+          acceptClassName='accepted'
+          rejectClassName='rejected'
+        >
+            <p>Drop your pictures here</p>
+          
+          
+        </Dropzone>
       </div>
     );
   }

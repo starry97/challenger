@@ -1,0 +1,44 @@
+.upload {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.upload-area {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-width: 2px;
+  border-color: rgb(102, 102, 102);
+  border-style: dashed;
+  border-radius: 5px;
+}
+
+.active {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-width: 2px;
+  border-color: rgb(102, 102, 102);
+  border-style: dashed;
+  border-radius: 5px;
+}
+
+.rejected {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-width: 2px;
+  border-color: red;
+  border-style: dashed;
+  border-radius: 5px;
+}
+
+.accepted {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-width: 2px;
+  border-color: green;
+  border-style: dashed;
+  border-radius: 5px;
+}
