@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-sdk": "^2.138.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-dropzone": "^4.2.1",
+    "react-dropzone-s3-uploader": "^1.1.0",
     "react-scripts": "1.0.14"
   },
   "scripts": {
