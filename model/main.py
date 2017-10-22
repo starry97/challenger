@@ -38,6 +38,7 @@ def compute_for_username(username):
     :param username: the username for this user.
     :return a list of JSON responses for all the images in this user's folder.
     """
+    bucket = resource.Bucket(S3_BUCKET_NAME)
     response = []
     for key in bucket.objects.filter(Prefix=username):
         url = 'https://s3-us-west-2.amazonaws.com/dubhacks17/' + key.key
@@ -73,7 +74,6 @@ if __name__ == '__main__':
 
     print("Bucket List: %s" % [bucket['Name'] for bucket in client.list_buckets()['Buckets']])
 
-    bucket = resource.Bucket(S3_BUCKET_NAME)
     username = 'sunbw'
 
     result_list = compute_for_username(username)
