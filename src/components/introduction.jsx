@@ -7,7 +7,7 @@ export default class Introduction extends Component {
     return (
       <div className='introduction'>
         <h1>HELLO &amp; WELCOME</h1>
-        <p>
+        <p className='description'>
            For most of the times, audience/students and lecturers/professors are blocked
            by some barriers, where lecturers don't know how are the audience feeling during the time period. 
            Our project can analyze photos taken during the lecture and give feedback to the lecturer about 

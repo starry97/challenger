@@ -10,8 +10,8 @@ h1 {
   margin: 0;
 }
 
-body {
-  background: black;
+.description {
+  font: 15px;
 }
 
 .arrow {

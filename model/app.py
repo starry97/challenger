@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from os import listdir
 from os.path import isfile, join
@@ -20,29 +20,37 @@ def result():
     input_address = request.form['input_address']
     # get predictions for all pictures in the input_address
     predictions, max_num_faces = getPredictions(username, input_address)
-    
+    max_focus = 0
+    min_focus = max_num_faces
+    avg_focus = 0.0
+
     for prediction in predictions:
         num_not_focus = max_num_faces - len(prediction)
         for face in prediction:
             if face["result"] is 0:
                 num_not_focus += 1
-        print "There are " + num_not_focus + " out of " + max_num_faces + " students are not focusing on the lecture."
+        max_focus = max(max_focus, max_num_faces - num_not_focus)
+        min_focus = min(min_focus, max_num_faces - num_not_focus)
+        avg_focus += max_num_faces - num_not_focus
+        print "There are " + str(num_not_focus) + " out of " + str(max_num_faces) + " students are not focusing on the lecture."
+    avg_focus /= len(predictions)
+    response = {}
+    response["avg_focus"] = avg_focus
+    response["max_focus"] = max_focus
+    response["min_focus"] = min_focus
     
-    
-    return 'Received !' # response to your request.
+    return jsonify(response) # response to your request.
 
 def getPredictions(username, input_address):
     # read all filenames in the input folder
-    filename_list = compute_for_username(username)
+    data_list = compute_for_username(username)
     max_num_faces = 0
     # predictions for all pictures
     predictions_all = []
-    print filename_list
     
     # filename should be in format: <unique filename>_<number of faces in picture>
-    for filename in filename_list:
-        print(filename)
-        data = emotion_api(filename)
+    for data in data_list:
+        print(data)
         item_dict = json.loads(data)
         max_num_faces = max(max_num_faces, len(item_dict))
         
@@ -68,4 +76,4 @@ if __name__ == "__main__":
     print
     print "Training Accuracy:", accuracy(train_data, predictions)
 
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8000, threaded=True)
