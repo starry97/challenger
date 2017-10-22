@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import './upload.css';
-import Loading from './loading.jsx';
+import Loading from 'react-loading-animation';
 
 const AWS = require('aws-sdk');
 
@@ -18,20 +18,27 @@ export class Uploader extends Component {
   constructor() {
     super();
     this.state = {
-      isLoading: true,
-      result: ""
+      isLoading: false
     }
   }
 
-  addPhoto(acceptedFiles) {
-    acceptedFiles.forEach(file => {
+  async addPhoto(acceptedFiles) {
+    document.getElementById("avg").innerHTML = '';
+    document.getElementById("max").innerHTML = '';
+    document.getElementById("min").innerHTML = '';
+    let this_ = this;
+    console.log(this.state.isLoading);
+    this.setState({
+      isLoading: true
+    });
+    await acceptedFiles.forEach(file => {
       var fileName = file.name;
       var key = username + '/' + fileName;
       s3.upload({
         Bucket: "dubhacks17",
         Key: key,
         Body: file,
-      }, function(err, data) {
+      }, async function(err, data) {
         if (err) {
           return alert('There was an error uploading your photo: ', err.message);
         }
@@ -44,7 +51,7 @@ export class Uploader extends Component {
           mode: 'cors',
           body: formData
         };
-        fetch("http://localhost:8000", param)
+        await fetch("http://localhost:8000", param)
         .then((response) => {
           if (response.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' +
@@ -52,19 +59,21 @@ export class Uploader extends Component {
             return;
           }
           response.json().then((data) => {
-            document.getElementById("result").innerHTML = JSON.stringify(data);
+            document.getElementById("avg").innerHTML = 'Average number of audience focused: ' + data.avg_focus;
+            document.getElementById("max").innerHTML = 'Max number of audience focused: ' + data.max_focus;
+            document.getElementById("min").innerHTML = 'Min number of audience focused: ' + data.min_focus;
+          }).then(() => {
+            this_.setState({
+              isLoading: false
+            })
           });
         }).catch(err => {
           console.log(err);
         });
       });  
-    });    
+    }); 
   }
 
-  renderDataVis() {
-
-  }
-  
   render() {
     const dropzone =  
       <Dropzone
@@ -79,15 +88,18 @@ export class Uploader extends Component {
         <p>Drop your pictures here</p>
       </Dropzone>;
 
-    const loading = <Loading />;
+    const loading = <Loading isLoading={this.state.isLoading}></Loading>;
     const result = 
-      <div id='result'>
+      <div className='result'>
+        <div id='avg'></div>
+        <div id='min'></div>
+        <div id='max'></div>
       </div>
     
-
     return (
       <div className='upload' id='upload'>
-        {this.isLoading ? loading : result}
+        {loading}
+        {result}
         {dropzone}
       </div>
     );

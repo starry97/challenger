@@ -1,9 +1,26 @@
 .introduction {
   margin: 0;
-  padding: 80px;
-  height: 300px;
+	padding: 80px;
   background-color: #4ba9a9;
-  color: white;
+	color: white;
+	border-left: 10px solid #0B486B;
+	border-right: 10px solid #0B486B;
+	border-bottom: 10px solid #0B486B;
+}
+
+p {
+	font-size: 25px;
+}
+
+.solution {
+	margin: 0;
+  padding: 80px;
+  height: 200px;
+  background-color: #4ba9a9;
+	color: white;
+	border-left: 10px solid #0B486B;
+	border-right: 10px solid #0B486B;
+	border-bottom: 10px solid #0B486B;
 }
 
 h1 {

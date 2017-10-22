@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import {Uploader} from "./components/upload.jsx";
 import Introduction from "./components/introduction.jsx";
+import Footer from "./components/footer.jsx";
+import './logo.svg';
+import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={'./logo.svg'} className="App-logo" alt="logo" /> */}
+          <h1>Focus</h1>
         </header>
         <Introduction/>
         <Uploader />
+        <Footer/>
       </div>
     );
   }

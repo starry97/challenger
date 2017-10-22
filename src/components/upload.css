@@ -1,7 +1,15 @@
 .upload {
+  border-left: 10px solid #0B486B;
+	border-right: 10px solid #0B486B;
+	border-bottom: 10px solid #0B486B;
   padding-top: 100px;
   padding-bottom: 100px;
   background-color: white;
+}
+
+.result div{
+  font-size: 20px;
+  margin: 20px;
 }
 
 .upload-area {
